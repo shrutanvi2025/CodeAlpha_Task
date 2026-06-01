@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Simple Portfolio</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f4f4f4;
+      color:#333;
+    }
+
+    /* Navbar */
+    nav{
+      background:#222;
+      padding:15px;
+      position:fixed;
+      width:100%;
+      top:0;
+    }
+
+    nav ul{
+      display:flex;
+      justify-content:center;
+      list-style:none;
+    }
+
+    nav ul li{
+      margin:0 20px;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      font-size:18px;
+    }
+
+    nav ul li a:hover{
+      color:orange;
+    }
+
+    /* Home */
+    #home{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      background:#333;
+      color:white;
+      text-align:center;
+    }
+
+    #home h1{
+      font-size:50px;
+    }
+
+    #home span{
+      color:orange;
+    }
+
+    #home p{
+      margin-top:10px;
+      font-size:20px;
+    }
+
+    .btn{
+      margin-top:20px;
+      padding:10px 20px;
+      background:orange;
+      color:white;
+      border:none;
+      text-decoration:none;
+      border-radius:5px;
+    }
+
+    .btn:hover{
+      background:darkorange;
+    }
+
+    /* Sections */
+    section{
+      padding:80px 20px;
+      text-align:center;
+    }
+
+    h2{
+      margin-bottom:20px;
+      color:#222;
+    }
+
+    /* About */
+    #about p{
+      max-width:600px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    /* Skills */
+    .skills{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .skill-box{
+      background:white;
+      padding:20px;
+      width:120px;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .skill-box:hover{
+      transform:scale(1.05);
+      transition:0.3s;
+    }
+
+    /* Projects */
+    .projects{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .project-card{
+      background:white;
+      width:250px;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .project-card:hover{
+      transform:translateY(-5px);
+      transition:0.3s;
+    }
+
+    /* Contact */
+    form{
+      max-width:400px;
+      margin:auto;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+    }
+
+    button{
+      padding:10px 20px;
+      border:none;
+      background:orange;
+      color:white;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:darkorange;
+    }
+
+    /* Footer */
+    footer{
+      background:#222;
+      color:white;
+      text-align:center;
+      padding:15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home -->
+  <section id="home">
+
+    <h1>Hello, I'm <span>Shrutanvi Dekate</span></h1>
+
+    <p>Web Developer | B.Tech Student</p>
+
+    <a href="#about" class="btn">About Me</a>
+
+  </section>
+
+  <!-- About -->
+  <section id="about">
+
+    <h2>About Me</h2>
+
+    <p>
+      I am a beginner web developer passionate about creating
+      simple and responsive websites using HTML, CSS and JavaScript.I am a passionate Frontend Developer with a strong interest in building responsive and user-friendly websites. I enjoy creating clean and modern web designs using HTML, CSS, and JavaScript.
+
+I focus on developing interactive websites that provide a smooth user experience across all devices. I continuously improve my skills by learning new technologies and working on real-world projects.
+To work as a Frontend Developer where I can improve my development skills, contribute to creative projects, and gain professional experience in web development.
+
+Strengths:Problem Solving, Quick Learner, Teamwork, Creativity, Time Management
+    </p>
+
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+
+    <h2>My Skills</h2>
+
+    <div class="skills">
+
+      <div class="skill-box">HTML</div>
+
+      <div class="skill-box">CSS</div>
+
+      <div class="skill-box">JavaScript</div>
+
+    </div>
+
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+
+    <h2>Projects</h2>
+
+    <div class="projects">
+
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>Simple personal portfolio website.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>Calculator</h3>
+        <p>Basic calculator using JavaScript.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+
+      <input type="text" placeholder="Your Name" required>
+
+      <input type="email" placeholder="Your Email" required>
+
+      <textarea placeholder="Your Message"></textarea>
+
+      <button type="submit">Send</button>
+
+    </form>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Your Name | Portfolio Website</p>
+  </footer>
+
+  <script>
+
+    // Contact Form Alert
+    const form = document.getElementById("contactForm");
+
+    form.addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      alert("Message Sent Successfully!");
+
+      form.reset();
+
+    });
+
+  </script>
+
+</body>
+</html>
