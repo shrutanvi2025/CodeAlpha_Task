@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>India Interactive Explorer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:linear-gradient(to right,#fff6e5,#ffe0b2);
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+}
+
+nav h1{
+    color:#ffcc00;
+    font-size:28px;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.4s;
+}
+
+nav ul li a:hover{
+    color:#ffcc00;
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    animation:zoom 8s infinite alternate;
+}
+
+@keyframes zoom{
+    from{
+        background-size:100%;
+    }
+    to{
+        background-size:110%;
+    }
+}
+
+.hero-content h2{
+    font-size:70px;
+    animation:slideDown 1.5s ease;
+}
+
+.hero-content p{
+    margin-top:20px;
+    font-size:22px;
+}
+
+.hero-btn{
+    margin-top:30px;
+    padding:15px 35px;
+    border:none;
+    border-radius:50px;
+    background:#ff9800;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.hero-btn:hover{
+    background:#ff5722;
+    transform:scale(1.1);
+}
+
+@keyframes slideDown{
+    from{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+/* SECTION */
+
+.states-section{
+    padding:100px 40px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:50px;
+    color:#d84315;
+    margin-bottom:60px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:40px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    transition:0.5s;
+}
+
+.card:hover{
+    transform:translateY(-15px);
+}
+
+.card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h2{
+    color:#e65100;
+    margin-bottom:10px;
+}
+
+.card-content p{
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.tag{
+    background:#ffe0b2;
+    padding:8px 15px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.tag:hover{
+    background:#ff9800;
+    color:white;
+    transform:scale(1.1);
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.modal-content{
+    background:white;
+    width:80%;
+    max-width:850px;
+    border-radius:20px;
+    overflow:hidden;
+    animation:popup 0.5s ease;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(0.5);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+}
+
+.modal-text{
+    padding:25px;
+}
+
+.modal-text h2{
+    color:#d84315;
+    margin-bottom:15px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:40px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+
+/* GALLERY */
+
+.gallery{
+    padding:80px 0;
+    background:#fff3e0;
+}
+
+.gallery h2{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:40px;
+    color:#d84315;
+}
+
+.slider{
+    width:85%;
+    margin:auto;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.slides{
+    display:flex;
+    width:400%;
+    animation:slide 16s infinite;
+}
+
+.slides img{
+    width:100%;
+    height:500px;
+    object-fit:cover;
+}
+
+@keyframes slide{
+
+0%{margin-left:0;}
+20%{margin-left:0;}
+
+25%{margin-left:-100%;}
+45%{margin-left:-100%;}
+
+50%{margin-left:-200%;}
+70%{margin-left:-200%;}
+
+75%{margin-left:-300%;}
+95%{margin-left:-300%;}
+
+}
+
+/* FOOTER */
+
+footer{
+    background:#1b1b1b;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+/* SCROLL ANIMATION */
+
+.hidden{
+    opacity:0;
+    transform:translateY(100px);
+    transition:all 1s ease;
+}
+
+.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+    <h1>🇮🇳 India Explorer</h1>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#states">States</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+    <h2>Incredible India</h2>
+
+    <p>
+        Discover India's Rich Culture, Food, Tradition & Devotion
+    </p>
+
+    <button class="hero-btn">Explore India</button>
+
+</div>
+
+</section>
+
+<!-- STATES -->
+
+<section class="states-section" id="states">
+
+<h1 class="section-title">Explore Indian States</h1>
+
+<div class="cards">
+
+<!-- Maharashtra -->
+
+<div class="card hidden">
+
+<img src="https://www.justahotels.com/wp-content/uploads/2023/09/Maharashtra-scaled.jpg">
+
+<div class="card-content">
+
+<h2>Maharashtra</h2>
+
+<p>
+Maharashtra is famous for Mumbai, Bollywood, forts, Ganesh Chaturthi and rich Marathi culture. The state has a blend of modern cities and historical heritage.
+</p>
+
+<div class="tags">
+
+<div class="tag"
+onclick="openModal(
+'Vada Pav',
+'https://tse2.mm.bing.net/th/id/OIP.N1VM7U34QaXWOc5dJ0oHRwHaE2?pid=Api&P=0&h=180',
+'Vada Pav is Maharashtra’s most famous street food. It consists of spicy potato fritters inside soft bread and is loved across Mumbai.'
+)">
+🍔 Vada Pav
+</div>
+
+<div class="tag"
+onclick="openModal(
+'Ganesh Festival',
+'https://static.toiimg.com/photo/msid-93927821,width-96,height-65.cms',
+'Ganesh Chaturthi is celebrated with huge devotion in Maharashtra. Beautiful Ganesh idols, music, dance and processions make the festival grand.'
+)">
+🎉 Ganesh Festival
+</div>
+
+<div class="tag"
+onclick="openModal(
+'Ajanta Caves',
+'https://explorexp.com/wp-content/uploads/2025/04/Ajanta-Caves.webp',
+'Ajanta caves are UNESCO World Heritage Sites known for ancient Buddhist paintings and architecture.'
+)">
+🏛 Ajanta Caves
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- Rajasthan -->
+
+<div class="card hidden">
+
+<img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h2>Rajasthan</h2>
+
+<p>
+Rajasthan is known as the Land of Kings. It is famous for deserts, palaces, colorful attire, folk music and royal heritage.
+</p>
+
+<div class="tags">
+
+<div class="tag"
+onclick="openModal(
+'Dal Baati Churma',
+'https://www.secondrecipe.com/wp-content/uploads/2020/11/dal-bati-churma.jpg',
+'Dal Baati Churma is a traditional Rajasthani dish loved for its rich flavor and authentic taste.'
+)">
+🍲 Dal Baati
+</div>
+
+<div class="tag"
+onclick="openModal(
+'Pushkar Fair',
+'https://nationaltoday.com/wp-content/uploads/2021/12/Pushkar-Camel-Fair-Pushkar-India--1200x834.jpg',
+'Pushkar Fair is one of the largest camel fairs in India with music, dance and cultural events.'
+)">
+🐪 Pushkar Fair
+</div>
+
+<div class="tag"
+onclick="openModal(
+'Hawa Mahal',
+'https://c8.alamy.com/comp/2B4BXMG/facade-of-the-the-palace-of-the-winds-hawa-mahal-jaipur-rajasthan-india-asia-this-is-one-of-the-excursion-of-the-luxury-train-maharajas-express-2B4BXMG.jpg',
+'Hawa Mahal in Jaipur is famous for its beautiful windows and Rajput architecture.'
+)">
+🏰 Hawa Mahal
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- Punjab -->
+
+<div class="card hidden">
+
+<img src="https://tse4.mm.bing.net/th/id/OIP.kvkEmEEvb5cDEi_2W0kDFgHaEO?pid=Api&P=0&h=180">
+
+<div class="card-content">
+
+<h2>Punjab</h2>
+
+<p>
+Punjab is famous for energetic Bhangra dance, Golden Temple, farming culture and delicious Punjabi cuisine.
+</p>
+
+<div class="tags">
+
+<div class="tag"
+onclick="openModal(
+'Lassi',
+'https://phoranmasala.com/cdn/shop/articles/lassi-recipe-punjabs-refreshing-yogurt-drink.png?v=1762363138&width=1100',
+'Lassi is a refreshing yogurt-based drink from Punjab served sweet or salted.'
+)">
+🥛 Lassi
+</div>
+
+<div class="tag"
+onclick="openModal(
+'Baisakhi',
+'https://i0.wp.com/www.tusktravel.com/blog/wp-content/uploads/2023/04/Baisakhi-Festival-Punjab.jpg?resize=768%2C477&ssl=1',
+'Baisakhi marks the harvest festival and Sikh New Year celebrated with joy and dance.'
+)">
+🌾 Baisakhi
+</div>
+
+<div class="tag"
+onclick="openModal(
+'Golden Temple',
+'https://wallpapers.com/images/featured/golden-temple-hd-6rp8cxk91fvj9ksx.jpg',
+'Golden Temple is the holiest Sikh shrine located in Amritsar.'
+)">
+✨ Golden Temple
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="gallery" id="gallery">
+
+<h2>Beautiful India Gallery</h2>
+
+<div class="slider">
+
+<div class="slides">
+
+<img src="https://c8.alamy.com/comp/ERYF7J/victoria-terminus-vt-now-chhatrapati-shivaji-terminus-cst-railway-ERYF7J.jpg">
+
+<img src="https://as2.ftcdn.net/v2/jpg/03/69/60/23/1000_F_369602394_BDG2w5IfVB7TRd7I50BUQQLxSyAHvflx.jpg">
+
+<img src="https://wallpapercave.com/wp/wp4737365.jpg">
+
+<img src="https://wallpapercave.com/wp/wp6698074.jpg">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<div class="modal-content">
+
+<img id="modalImg">
+
+<div class="modal-text">
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalDescription"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>🇮🇳 India Interactive Explorer</h2>
+
+<p>
+Explore India's Diversity Through Culture, Food, Festivals & Devotion
+Created and Animated by @Shrutanvi| shrutanvidekate07@gmail.com
+</p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+// HERO BUTTON
+
+document.querySelector(".hero-btn").addEventListener("click",()=>{
+    alert("Welcome to Incredible India 🇮🇳");
+});
+
+// MODAL FUNCTION
+
+function openModal(title,image,description){
+
+    document.getElementById("modal").style.display="flex";
+
+    document.getElementById("modalTitle").innerText=title;
+
+    document.getElementById("modalImg").src=image;
+
+    document.getElementById("modalDescription").innerText=description;
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+// SCROLL ANIMATION
+
+const hiddenElements=document.querySelectorAll('.hidden');
+
+window.addEventListener('scroll',()=>{
+
+    hiddenElements.forEach(el=>{
+
+        const top=el.getBoundingClientRect().top;
+
+        if(top < window.innerHeight-100){
+            el.classList.add('show');
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
